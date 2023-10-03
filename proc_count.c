@@ -11,14 +11,14 @@ static int proc_count(struct seq_file *m, void *v){
 	int count = 0;
        	char num[20];
 	int i = 0;
-	int digit;
+	int digit, cp, len;
 	
 	for_each_process(p) {
 	  count++;
 	}
 
-	int cp = count;
-	int len = 0;
+	cp = count;
+	len = 0;
 	while (cp != 0)
 	{
 	  len++;
