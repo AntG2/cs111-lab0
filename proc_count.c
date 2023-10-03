@@ -9,10 +9,14 @@ static struct proc_dir_entry *entry;
 static int proc_count(struct seq_file *m, void *v){
 	struct task_struct *p;
 	int count = 0;
+       	char num[20];
+	int i = 0;
+	int digit;
+	
 	for_each_process(p) {
 	  count++;
 	}
-	char num[20];
+
 	int cp = count;
 	int len = 0;
 	while (cp != 0)
@@ -20,11 +24,14 @@ static int proc_count(struct seq_file *m, void *v){
 	  len++;
 	  cp = cp / 10;
 	}
-	for (int i = 0; i < len; i++)
+
+	
+        while (i < len)
 	{
-	  int digit = count % 10;
+	  digit = count % 10;
 	  count = count / 10;
 	  num[len - (i + 1)] = digit + '0';
+	  i++;
 	}
 	num[len] = '\0';
 	seq_printf(m, num);
