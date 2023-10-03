@@ -26,7 +26,7 @@ static int proc_count(struct seq_file *m, void *v){
 	}
 
 	
-        while (i < len)
+        while (i < len - 1)
 	{
 	  digit = count % 10;
 	  count = count / 10;
