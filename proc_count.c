@@ -3,6 +3,7 @@
 #include <linux/proc_fs.h>
 #include <linux/seq_file.h>
 #include <linux/sched.h>
+#include <string.h>
 
 static struct proc_dir_entry *entry;
 
@@ -12,7 +13,22 @@ static int proc_count(struct seq_file *m, void *v){
 	for_each_process(p) {
 	  count++;
 	}
-	seq_printf(m, count);
+	char num[20];
+	int cp = count;
+	int len = 0;
+	while (cp != 0)
+	{
+	  len++;
+	  cp = cp / 10;
+	}
+	for (int i = 0; i < len; i++)
+	{
+	  int digit = count % 10;
+	  count = count / 10;
+	  num[len - (i + 1)] = digit + '0';
+	}
+	num[len] = '\0';
+	seq_printf(m, num);
 	return 0;
 }
 
