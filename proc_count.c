@@ -26,14 +26,14 @@ static int proc_count(struct seq_file *m, void *v){
 	}
 
 	
-        while (i < len - 1)
+        while (i < len)
 	{
 	  digit = count % 10;
 	  count = count / 10;
 	  num[len - (i + 1)] = digit + '0';
 	  i++;
 	}
-	num[len] = '\0';
+	//num[len] = '\0';
 	seq_printf(m, num);
 	return 0;
 }
