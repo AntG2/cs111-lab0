@@ -33,7 +33,8 @@ static int proc_count(struct seq_file *m, void *v){
 	  num[len - (i + 1)] = digit + '0';
 	  i++;
 	}
-	//num[len] = '\0';
+	num[len] = '\n';
+	num[len + 1] = '\0';
 	seq_printf(m, num);
 	return 0;
 }
