@@ -1,33 +1,39 @@
 # A Kernel Seedling
-TODO: intro
+The kernel module counts the number of processes or tasks that are currently running on the system.
 
 ## Building
 ```shell
-TODO: cmd for build
+make
+the make command builds the kernel module proc_count.ko from existing files.
 ```
 
 ## Running
 ```shell
-TODO: cmd for running binary
+if there is already an existing kernel module, run:
+sudo rmmod proc_count.ko
+then insert the module:
+sudo insmod proc_count.ko
+the insertion (module initialization) creates the /proc/count file that would contain the output of the module and run the proc_count code to count the number of current running processes.
 ```
-TODO: results?
+to see results, run the command
+cat /proc/count
+to view the output of the module contained in the file
 
 ## Cleaning Up
 ```shell
-TODO: cmd for cleaning the built binary
+use the command:
+make clean
+to remove the inserted module, run:
+sudo rmmod proc_count.ko
 ```
 
 ## Testing
 ```python
 python -m unittest
 ```
-TODO: results?
-
-Report which kernel release version you tested your module on
-(hint: use `uname`, check for options with `man uname`).
-It should match release numbers as seen on https://www.kernel.org/.
+the command tests for 3 cases and report whether the module passes the test succesfully (indicated by .) or fails the test (indicated by F). if a test case failed, the program reports the error.
 
 ```shell
 uname -r -s -v
 ```
-TODO: kernel ver?
+the kernel release version tested on is Linux 5.14.8-arch1-1 #1 SMP PREEMPT SUN, 26 Sep 2021 19:36:15 +0000
